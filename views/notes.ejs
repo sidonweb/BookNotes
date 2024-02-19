@@ -1,0 +1,40 @@
+<%- include('partials/header.ejs') %>
+<body id="booklist" >
+    <header>
+        <div id="navbar">
+            <h1>
+                Sid's Bookshelf
+            </h1>
+            <form action="/" method="POST">
+                <button class="login-button" type="submit" role="button">Go Back</button>
+            </form>
+
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+        <div class="container">
+            <div class="image">
+                <img src="//covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg"
+                    srcset="//covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg 2x" alt="Book cover">
+            </div>
+    
+            <div class="notes-heading">
+                <h2><%= book.title %> Summary</h2>
+                <h2>Book by <%= book.author %></h2>
+            </div>
+    </header>
+    <hr>
+    <div class="container">
+        <div class="notes-colum">
+           
+            <pre><%= book.book_notes %></pre>
+            
+        </div>
+           
+        
+    </div>
+    <%- include('partials/footer.ejs') %>

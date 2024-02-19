@@ -1,0 +1,46 @@
+<%- include('partials/header.ejs') %>
+
+<body id="booklist">
+    <header>
+        <div id="navbar">
+            <h1>
+                Sid's Bookshelf
+            </h1>
+            <form action="/login" method="POST">
+                <input type="password" name="password" class="login-input" placeholder="Password">
+                <button class="login-button" type="submit" role="button">Login</button>
+            </form>
+
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+        <h2>Books I've read</h2>
+        <p>Tiny summary but <strong>detailed notes for each</strong>. You can find it from your local
+            library or anywhere else. <strong>This page will constantly update as I read more</strong>, so bookmark it
+            if you want to check back in a few months.</p>
+    </header>
+    <hr>
+    <% for(let book of books){ %>
+    <div class="container">
+        <div class="image">
+            <img src="//covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg"
+                srcset="//covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg 2x" alt="Book cover">
+        </div>
+
+        <div class="colum">
+            <h2><%= book.title %> by <%= book.author %></h2>
+            <small>How strongly I recommend it: <strong><%= book.rating %></strong>/10</small>
+            <p>
+                <%= book.review_text %>
+            </p>
+            <p>You can <strong><a href="/notes/<%= book.id %>">read my notes</a></strong> here.
+            </p>
+        </div>
+    </div>
+    <% }; %>
+
+    <%- include('partials/footer.ejs') %>

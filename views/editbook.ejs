@@ -1,0 +1,37 @@
+<%- include('partials/header.ejs') %>
+<body id="booklist">
+    <header>
+        <div id="navbar">
+            <h1>
+                Sid's Bookshelf
+            </h1>
+            <form action="/login" method="POST">
+                <button class="login-button" type="submit" role="button">Go Back</button>
+            </form>
+
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+        <h2>update a book here</h2>
+    </header>
+    <hr>
+    <div class="admin-form">
+        <form action="/updateBook" method="post">
+            <input type="hidden" name="bookId" value="<%=book[0].id%>">
+            <input type="text" name="title" value="<%= book[0].title %>">
+            <input type="text" name="author" placeholder="Who's the book author?" value="<%= book[0].author %>">
+            <input type="text" name="cover_id" placeholder="What's the book cover ID?" value="<%= book[0].cover_id %>">
+            <input type="number" min="0" max="10" name="rating" placeholder="Rating out of 10?" value="<%= book[0].rating %>">
+            <textarea id="bookreview" name="review" rows="4" cols="50"
+                placeholder="What do you think of this book?"><%= book[0].review_text %></textarea>
+            <textarea id="booknotes" name="book_notes" rows="8" cols="50"
+            placeholder="Write notes here." ><%= book[0].book_notes %></textarea>
+            <button class="login-button" type="submit">Update Book</button>
+        </form>
+    </div>
+    
+<%- include('partials/footer.ejs') %>

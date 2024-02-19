@@ -1,0 +1,76 @@
+<%- include('partials/header.ejs') %>
+
+<body id="booklist">
+    <header>
+        <div id="navbar">
+            <h1>
+                Sid's Bookshelf
+            </h1>
+            <form action="/" method="POST">
+                <button class="login-button" type="submit" role="button">Go Back</button>
+            </form>
+
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+        <h2>Add, remove and update books here</h2>
+    </header>
+    <hr>
+    <div class="admin-form">
+        <form action="/addBook" method="post">
+            <input type="text" name="title" placeholder="What's the book title?">
+            <input type="text" name="author" placeholder="Who's the book author?">
+            <input type="text" name="cover_id" placeholder="What's the book cover ID?">
+            <input type="number" min="0" max="10" name="rating" placeholder="Rating out of 10?">
+            <textarea id="bookreview" name="review" rows="4" cols="50"
+                placeholder="What do you think of this book?"></textarea>
+            <textarea id="booknotes" name="book_notes" rows="8" cols="50"
+                placeholder="Write notes here."></textarea>
+            <button class="login-button" type="submit">Add Book</button>
+        </form>
+    </div>
+
+
+    <% for(let book of books){ %>
+    <div class="container">
+        <div class="image">
+            <img src="//covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg"
+                srcset="//covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg 2x" alt="Book cover">
+        </div>
+
+        <div class="colum">
+            <h2><%= book.title %> by <%= book.author %></h2>
+            <small>How strongly I recommend it: <strong><%= book.rating %></strong>/10</small>
+            <p>
+                <%= book.review_text %>
+            </p>
+            <div id="colum-form" >
+
+                
+
+
+                <button class="login-button" onclick="deleteData('<%=book.id%>')" type="button">Delete</button>
+                <form  action="/book" method="post">
+                    <input type="hidden" name="bookId" value="<%=book.id%>">
+                    <button class="login-button colum-form-btn " type="submit">Edit</button>
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+    <% }; %>
+
+    <!-- <p><strong><a href=/book/NegotiateAnything>Read my notes</a> </strong>, or go to the <a href="">Amazon
+                        page</a> for details and
+                    reviews.
+            </p> -->
+
+
+
+    <%- include('partials/footer.ejs') %>
